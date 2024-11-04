@@ -1,7 +1,9 @@
 import React from "react";
 import "./Column.css";
+import Card from "../Card/Card"; // Import the Card component
+import colimg from "../../assets/react.svg";
 
-const Column = ({ title, tickets, ordering }) => {
+const Column = ({ grouping, title, tickets, ordering }) => {
   // Function to sort tickets based on the ordering criteria
   const sortTickets = (tickets, ordering) => {
     return [...tickets].sort((a, b) => {
@@ -10,7 +12,6 @@ const Column = ({ title, tickets, ordering }) => {
       } else if (ordering === "Title") {
         return a.title.localeCompare(b.title); // Alphabetical order by title
       }
-      return 0; // No sorting if the ordering criteria is not recognized
     });
   };
 
@@ -18,23 +19,24 @@ const Column = ({ title, tickets, ordering }) => {
 
   return (
     <div className="column">
-      <h2 className="column-title">{title}</h2>
-      <ul className="ticket-list">
-        {sortedTickets.length > 0 ? (
-          sortedTickets.map(ticket => (
-            <li key={ticket.id} className="ticket-item">
-              <h3 className="ticket-title">{ticket.title}</h3>
-              <p className="ticket-details">
-                <strong>Status:</strong> {ticket.status} | 
-                <strong> Priority:</strong> {ticket.priority} | 
-                <strong> Tags:</strong> {ticket.tag.join(", ")}
-              </p>
-            </li>
-          ))
-        ) : (
-          <p className="no-tickets">No tickets available</p>
-        )}
-      </ul>
+      <div className="column-title">
+        <div className="title-left">
+          <img src={colimg} alt="" />
+          {title}
+          <span>{tickets.length}</span>
+          
+        </div>
+        <div className="title-buttons">
+          <button>+</button>
+          <button>⋯</button>
+        </div>
+      </div>
+      <div className="ticket-list">
+        {sortedTickets.length > 0 &&
+          sortedTickets.map((ticket) => (
+            <Card key={ticket.id} ticket={ticket} grouping={grouping}/> // Use the Card component for each ticket
+          ))}
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Home = ({ grouping, ordering }) => {
   const [users, setUsers] = useState([]);
   const [tickets, setTickets] = useState([]);
   const priorityList = [0, 1, 2, 3, 4];
-  const statusList = ["Backlog", "In progress", "Todo", "Done", "Cancelled"];
+  const statusList = ["Backlog", "Todo", "In progress", "Done", "Cancelled"];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +37,7 @@ const Home = ({ grouping, ordering }) => {
           );
           return (
             <Column
+              grouping={grouping}
               ordering={ordering}
               key={status}
               title={status}
@@ -52,6 +53,7 @@ const Home = ({ grouping, ordering }) => {
           );
           return (
             <Column
+              grouping={grouping}
               ordering={ordering}
               key={user.id}
               title={user.name}
@@ -67,6 +69,7 @@ const Home = ({ grouping, ordering }) => {
           );
           return (
             <Column
+              grouping={grouping}
               ordering={ordering}
               key={priority}
               title={`Priority ${priority}`}
