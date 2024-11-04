@@ -1,2 +1,4 @@
-.home-page {
+.home {
+    display: flex;
+    flex-direction: row;  
 }

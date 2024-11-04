@@ -1,24 +1,61 @@
-import React from 'react';
-import './Home.css';
+import React from "react";
+import "./Home.css";
+import Column from "../components/Column/Column";
+import { useState, useEffect } from "react";
 
-const Home = ({ tickets, grouping, ordering }) => {
-  // You can sort and group tickets here based on grouping and ordering
+const Home = ({ grouping, ordering }) => {
+  const [users, setUsers] = useState([]);
+  const [tickets, setTickets] = useState([]);
+  const priorityList = [0, 1, 2, 3, 4];
+  const statusList = ["Backlog", "In progress", "Todo", "Done", "Cancelled"];
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://api.quicksell.co/v1/internal/frontend-assignment"
+        );
+        const data = await response.json();
+
+        // Store users and tickets in state
+        setUsers(data.users);
+        setTickets(data.tickets);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const renderColumns = () => {
+    switch (grouping) {
+      case "Status":
+        return statusList.map((status) => {
+          const filteredTickets = tickets.filter(ticket => ticket.status === status);
+          return <Column key={status} title={status} tickets={filteredTickets} />;
+        });
+
+      case "User":
+        return users.map((user) => {
+          const filteredTickets = tickets.filter(ticket => ticket.userId === user.id);
+          return <Column key={user.id} title={user.name} tickets={filteredTickets} />;
+        });
+
+      case "Priority":
+        return priorityList.map((priority) => {
+          const filteredTickets = tickets.filter(ticket => ticket.priority === priority);
+          return <Column key={priority} title={`Priority ${priority}`} tickets={filteredTickets} />;
+        });
+
+      default:
+        return null;
+    }
+  };
 
   return (
-    <div className='home-page'>
-      <h1>Home</h1>
-      <p>Grouping by: {grouping}</p>
-      <p>Ordering by: {ordering}</p>
-      {/* Render tickets here */}
-      <ul>
-        {tickets.map(ticket => (
-          <li key={ticket.id}>
-            <h3>{ticket.title}</h3>
-            <p>Status: {ticket.status}</p>
-            <p>Priority: {ticket.priority}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="home">
+      {renderColumns()}
     </div>
   );
 };
