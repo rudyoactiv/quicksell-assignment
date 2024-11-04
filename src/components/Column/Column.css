@@ -34,6 +34,7 @@
 }
 
 .initial {
+    position: relative;
     margin-right: 5px;
     border-radius: 50%;
     width: 20px; /* Set a fixed width */
@@ -43,6 +44,24 @@
     justify-content: center; /* Horizontally center the text */
     color: black; /* Optional: set the text color */
 }
+
+.availability-indicator {
+    position: absolute;
+    bottom: -4px; /* Adjust based on your design */
+    right: -4px; /* Adjust based on your design */
+    width: 8px; /* Size of the circle */
+    height: 8px; /* Size of the circle */
+    border: 2px solid white;
+    border-radius: 50%; /* Make it a circle */
+  }
+
+  .available {
+    background-color: green; /* Color for available */
+  }
+  
+  .not-available {
+    background-color: red; /* Color for not available */
+  }
 
 .title-left span {
     margin-left: 5px;

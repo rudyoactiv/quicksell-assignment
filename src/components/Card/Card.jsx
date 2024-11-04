@@ -67,18 +67,22 @@ console.log(users);
     return firstInitial + secondInitial;
   };
 
-
+  const user = users.find((user) => user.id === ticket.userId);
+  const isAvailable = user ? user.available : false;
 
   return (
     <div className="card">
       <div className="card-header">
         {ticket.id}
-        {grouping != "User" && (
+        {grouping !== "User" && (
           <div
             className="initial"
             style={{ backgroundColor: getRandomColor() }}
           >
-            {getInitials(users.find((user) => user.id === ticket.userId).name)}
+            {getInitials(user ? user.name : "Unknown User")}
+            <div
+              className={`availability-indicator ${isAvailable ? 'available' : 'not-available'}`}
+            ></div>
           </div>
         )}
       </div>
