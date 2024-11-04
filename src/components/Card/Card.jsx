@@ -7,16 +7,14 @@ const Card = ({ ticket, grouping }) => {
     <div className="card">
       <div className="card-header">
         {ticket.id}
-        <img src={cardimg} alt="" />
+        {grouping != "User" && <img src={cardimg} alt="" />}
       </div>
       <div className="card-title">
-        {/* {grouping != "User" && <img src={cardimg} alt="" />} */}
-        <img src={cardimg} alt="" />
-        {/* {ticket.status} <br />  add this later*/}
+        {grouping != "Status" && <img src={cardimg} alt="" />}
         <p>{ticket.title}</p>
       </div>
       <div className="card-footer">
-        <img src={cardimg} alt="" />
+        {grouping != "Priority" && <img src={cardimg} alt="" />}
         {/* {ticket.priority} */}
         <div className="tag">
           <div className="circle"></div>
