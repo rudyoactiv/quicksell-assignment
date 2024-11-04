@@ -18,7 +18,10 @@ const Card = ({ ticket, grouping }) => {
       <div className="card-footer">
         <img src={cardimg} alt="" />
         {/* {ticket.priority} */}
-        {ticket.tag.join(", ")}
+        <div className="tag">
+          <div className="circle"></div>
+          {ticket.tag.join(", ")}
+        </div>
       </div>
     </div>
   );
