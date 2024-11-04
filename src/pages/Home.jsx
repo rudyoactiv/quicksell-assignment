@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const Home = ({ grouping, ordering }) => {
   const [users, setUsers] = useState([]);
   const [tickets, setTickets] = useState([]);
-  const priorityList = [0, 1, 2, 3, 4];
+  const priorityList = [0, 4, 3, 2, 1];
   const statusList = ["Backlog", "Todo", "In progress", "Done", "Canceled"];
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const Home = ({ grouping, ordering }) => {
           );
           return (
             <Column
+              status={status}
               grouping={grouping}
               ordering={ordering}
               key={status}
@@ -72,7 +73,7 @@ const Home = ({ grouping, ordering }) => {
               grouping={grouping}
               ordering={ordering}
               key={priority}
-              title={`Priority ${priority}`}
+              title={priority}
               tickets={filteredTickets}
             />
           );

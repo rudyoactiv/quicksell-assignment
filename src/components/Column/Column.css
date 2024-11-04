@@ -1,7 +1,7 @@
 .column {
     min-width: 200px;
     width: 20vw;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 .column-title {
@@ -9,6 +9,11 @@
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
+    margin: 20px 0;
+}
+
+.column-title p {
+    margin: 0;
 }
 
 .column-title button {
