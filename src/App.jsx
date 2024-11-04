@@ -4,12 +4,31 @@ import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 
 const App = () => {
-  const [grouping, setGrouping] = useState("Status"); // Default grouping
-  const [ordering, setOrdering] = useState("Priority"); // Default ordering
+  const [grouping, setGrouping] = useState(() => {
+    return localStorage.getItem("grouping") || "Status"; // Default grouping
+  });
+
+  const [ordering, setOrdering] = useState(() => {
+    return localStorage.getItem("ordering") || "Priority"; // Default ordering
+  });
+
+    useEffect(() => {
+      localStorage.setItem("grouping", grouping);
+    }, [grouping]);
+  
+    useEffect(() => {
+      localStorage.setItem("ordering", ordering);
+    }, [ordering]);
+
 
   return (
     <div>
-      <Navbar setGrouping={setGrouping} setOrdering={setOrdering} />
+      <Navbar 
+        grouping={grouping}
+        ordering={ordering}
+        setGrouping={setGrouping} 
+        setOrdering={setOrdering} 
+      />
       <Home
         grouping={grouping}
         ordering={ordering}

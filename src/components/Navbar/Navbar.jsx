@@ -3,7 +3,7 @@ import "./Navbar.css";
 import dropimg from "../../assets/icons/menu.svg";
 import down from "../../assets/icons/down.svg";
 
-const Navbar = ({ setGrouping, setOrdering }) => {
+const Navbar = ({ grouping, ordering, setGrouping, setOrdering }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleMenu = () => {
@@ -28,7 +28,7 @@ const Navbar = ({ setGrouping, setOrdering }) => {
       <div className={showMenu ? "dropdown" : "dropdown hide"}>
         <div className="grouping">
           Grouping
-          <select name="group" id="group" onChange={handleGroupingChange}>
+          <select name="group" id="group" value={grouping} onChange={handleGroupingChange}>
             <option value="Status">Status</option>
             <option value="User">User</option>
             <option value="Priority">Priority</option>
@@ -36,7 +36,7 @@ const Navbar = ({ setGrouping, setOrdering }) => {
         </div>
         <div className="ordering">
           Ordering
-          <select name="order" id="order" onChange={handleOrderingChange}>
+          <select name="order" id="order" value={ordering} onChange={handleOrderingChange}>
             <option value="Priority">Priority</option>
             <option value="Title">Title</option>
           </select>
