@@ -8,6 +8,7 @@ nav {
     align-items: center;
     padding: 10px;
     box-shadow: 0 0 5px #cccccc;
+    z-index: 1000;
 }
 
 .drop-btn {
