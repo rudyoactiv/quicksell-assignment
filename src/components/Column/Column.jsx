@@ -17,6 +17,7 @@ import canceled from "../../assets/icons/status/canceled.svg";
 
 const Column = ({ grouping, title, tickets, ordering, users }) => {
 
+
   // Function to sort tickets based on the ordering criteria
   const sortTickets = (tickets, ordering) => {
     return [...tickets].sort((a, b) => {
@@ -81,6 +82,12 @@ const Column = ({ grouping, title, tickets, ordering, users }) => {
     return firstInitial + secondInitial;
   };
 
+  let isAvailable = false;
+  if (grouping === "User") {
+    const user = users.find((user) => user.name === title);
+    isAvailable = user ? user.available : false; // Update value based on user availability
+  }
+
   return (
     <div className="column">
       <div className="column-title">
@@ -91,6 +98,9 @@ const Column = ({ grouping, title, tickets, ordering, users }) => {
               style={{ backgroundColor: getRandomColor() }}
             >
               {getInitials(title)}
+              <div
+              className={`availability-indicator ${isAvailable ? 'available' : 'not-available'}`}
+            ></div>
             </div>
           ) : null}
 
