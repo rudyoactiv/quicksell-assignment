@@ -7,7 +7,7 @@ const Home = ({ grouping, ordering }) => {
   const [users, setUsers] = useState([]);
   const [tickets, setTickets] = useState([]);
   const priorityList = [0, 1, 2, 3, 4];
-  const statusList = ["Backlog", "Todo", "In progress", "Done", "Cancelled"];
+  const statusList = ["Backlog", "Todo", "In progress", "Done", "Canceled"];
 
   useEffect(() => {
     const fetchData = async () => {
