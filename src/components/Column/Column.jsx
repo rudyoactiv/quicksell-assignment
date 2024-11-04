@@ -1,7 +1,6 @@
 import React from "react";
 import "./Column.css";
 import Card from "../Card/Card"; // Import the Card component
-import userImg from "../../assets/icons/user.svg";
 
 import priority0 from "../../assets/icons/priority0.svg";
 import priority1 from "../../assets/icons/priority1.svg";
@@ -107,7 +106,7 @@ const Column = ({ grouping, title, tickets, ordering, users }) => {
           {grouping == "Status" && (
             <img src={statusImages[title]} alt={title} />
           )}
-          { grouping == "priority" && (
+          { grouping == "Priority" && (
             <img src={priorityImages[title]} alt={title} />
           )}
 
