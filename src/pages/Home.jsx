@@ -8,7 +8,7 @@ const Home = ({ grouping, ordering }) => {
   const [tickets, setTickets] = useState([]);
   const priorityList = [0, 1, 2, 3, 4];
   const statusList = ["Backlog", "In progress", "Todo", "Done", "Cancelled"];
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,20 +32,47 @@ const Home = ({ grouping, ordering }) => {
     switch (grouping) {
       case "Status":
         return statusList.map((status) => {
-          const filteredTickets = tickets.filter(ticket => ticket.status === status);
-          return <Column key={status} title={status} tickets={filteredTickets} />;
+          const filteredTickets = tickets.filter(
+            (ticket) => ticket.status === status
+          );
+          return (
+            <Column
+              ordering={ordering}
+              key={status}
+              title={status}
+              tickets={filteredTickets}
+            />
+          );
         });
 
       case "User":
         return users.map((user) => {
-          const filteredTickets = tickets.filter(ticket => ticket.userId === user.id);
-          return <Column key={user.id} title={user.name} tickets={filteredTickets} />;
+          const filteredTickets = tickets.filter(
+            (ticket) => ticket.userId === user.id
+          );
+          return (
+            <Column
+              ordering={ordering}
+              key={user.id}
+              title={user.name}
+              tickets={filteredTickets}
+            />
+          );
         });
 
       case "Priority":
         return priorityList.map((priority) => {
-          const filteredTickets = tickets.filter(ticket => ticket.priority === priority);
-          return <Column key={priority} title={`Priority ${priority}`} tickets={filteredTickets} />;
+          const filteredTickets = tickets.filter(
+            (ticket) => ticket.priority === priority
+          );
+          return (
+            <Column
+              ordering={ordering}
+              key={priority}
+              title={`Priority ${priority}`}
+              tickets={filteredTickets}
+            />
+          );
         });
 
       default:
