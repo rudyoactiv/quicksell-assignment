@@ -32,6 +32,18 @@
     margin-right: 5px;
     height: 12px;
 }
+
+.initial {
+    margin-right: 5px;
+    border-radius: 50%;
+    width: 20px; /* Set a fixed width */
+    height: 20px; /* Set a fixed height */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Vertically center the text */
+    justify-content: center; /* Horizontally center the text */
+    color: black; /* Optional: set the text color */
+}
+
 .title-left span {
     margin-left: 5px;
     font-weight: normal;

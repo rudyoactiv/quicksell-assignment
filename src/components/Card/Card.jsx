@@ -19,7 +19,7 @@ import canceled from "../../assets/icons/status/canceled.svg";
 
 const Card = ({ ticket, grouping }) => {
 
-  console.log(ticket.status);
+
 
   const priorityImages = {
     0: priority0,
@@ -36,6 +36,7 @@ const Card = ({ ticket, grouping }) => {
     "Done": done,
     "Canceled": canceled,
   };
+
 
   return (
     <div className="card">

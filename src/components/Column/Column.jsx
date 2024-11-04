@@ -1,7 +1,7 @@
 import React from "react";
 import "./Column.css";
 import Card from "../Card/Card"; // Import the Card component
-import colimg from "../../assets/react.svg";
+import userImg from "../../assets/icons/user.svg";
 
 import priority0 from "../../assets/icons/priority0.svg";
 import priority1 from "../../assets/icons/priority1.svg";
@@ -15,7 +15,7 @@ import progress from "../../assets/icons/status/progress.svg";
 import done from "../../assets/icons/status/done.svg";
 import canceled from "../../assets/icons/status/canceled.svg";
 
-const Column = ({ status, grouping, title, tickets, ordering }) => {
+const Column = ({ grouping, title, tickets, ordering }) => {
   // Function to sort tickets based on the ordering criteria
   const sortTickets = (tickets, ordering) => {
     return [...tickets].sort((a, b) => {
@@ -28,6 +28,24 @@ const Column = ({ status, grouping, title, tickets, ordering }) => {
   };
 
   const sortedTickets = sortTickets(tickets, ordering); // Sort the tickets based on the ordering prop
+
+  const colorList = [
+    "#FF5733", // Red Orange
+    "#33FF57", // Green
+    "#3357FF", // Blue
+    "#F1C40F", // Yellow
+    "#9B59B6", // Purple
+    "#2ECC71", // Emerald
+    "#E67E22", // Carrot
+    "#3498DB", // Peter River
+    "#1ABC9C", // Turquoise
+    "#34495E"  // Wet Asphalt
+];
+
+  const getRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * colorList.length);
+    return colorList[randomIndex];
+};
 
   const priorityImages = {
     0: priority0,
@@ -53,20 +71,40 @@ const Column = ({ status, grouping, title, tickets, ordering }) => {
     0: "No priority",
   };
 
+  const getInitials = (title) => {
+    const words = title.split(" ");
+    if (words.length === 0) return "";
+    const firstInitial = words[0].charAt(0).toUpperCase();
+    const secondInitial =
+      words.length > 1 ? words[1].charAt(0).toUpperCase() : "";
+    return firstInitial + secondInitial;
+  };
+
   return (
     <div className="column">
       <div className="column-title">
         <div className="title-left">
-          {/* status image or priority image based on grouping value */}
-          {grouping === "Status" ? (
+          {grouping === "User" ? (
+            <div
+              className="initial"
+              style={{ backgroundColor: getRandomColor() }}
+            >
+              {getInitials(title)}
+            </div>
+          ) : null}
+
+          {grouping == "Status" && (
             <img src={statusImages[title]} alt={title} />
-          ) : (
+          )}
+          { grouping == "priority" && (
             <img src={priorityImages[title]} alt={title} />
           )}
 
-          {grouping === "Status" ? <p>{title}</p> : <p>{altPriority[title]}</p>}
+          {grouping === "Priority" ? <p>{altPriority[title]}</p> : <p>{title}</p>}
+
           <span>{tickets.length}</span>
         </div>
+
         <div className="title-buttons">
           <button>+</button>
           <button>⋯</button>
