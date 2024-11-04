@@ -43,6 +43,7 @@ const Home = ({ grouping, ordering }) => {
               key={status}
               title={status}
               tickets={filteredTickets}
+              users={users}
             />
           );
         });
@@ -59,6 +60,7 @@ const Home = ({ grouping, ordering }) => {
               key={user.id}
               title={user.name}
               tickets={filteredTickets}
+              users={users}
             />
           );
         });
@@ -75,6 +77,7 @@ const Home = ({ grouping, ordering }) => {
               key={priority}
               title={priority}
               tickets={filteredTickets}
+              users={users}
             />
           );
         });
@@ -84,11 +87,7 @@ const Home = ({ grouping, ordering }) => {
     }
   };
 
-  return (
-    <div className="home">
-      {renderColumns()}
-    </div>
-  );
+  return <div className="home">{renderColumns()}</div>;
 };
 
 export default Home;

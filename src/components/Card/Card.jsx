@@ -8,17 +8,37 @@ import priority2 from "../../assets/icons/priority2.svg";
 import priority3 from "../../assets/icons/priority3.svg";
 import priority4 from "../../assets/icons/priority4.svg";
 
-
-
 import backlog from "../../assets/icons/status/backlog.svg";
 import todo from "../../assets/icons/status/todo.svg";
 import progress from "../../assets/icons/status/progress.svg";
 import done from "../../assets/icons/status/done.svg";
 import canceled from "../../assets/icons/status/canceled.svg";
 
+const Card = ({ ticket, grouping, users }) => {
 
-const Card = ({ ticket, grouping }) => {
 
+
+
+  const colorList = [
+    "#FF5733", // Red Orange
+    "#33FF57", // Green
+    "#3357FF", // Blue
+    "#F1C40F", // Yellow
+    "#9B59B6", // Purple
+    "#2ECC71", // Emerald
+    "#E67E22", // Carrot
+    "#3498DB", // Peter River
+    "#1ABC9C", // Turquoise
+    "#34495E"  // Wet Asphalt
+];
+
+  const getRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * colorList.length);
+    return colorList[randomIndex];
+};
+
+
+console.log(users);
 
 
   const priorityImages = {
@@ -30,28 +50,52 @@ const Card = ({ ticket, grouping }) => {
   };
 
   const statusImages = {
-    "Todo": todo,
+    Todo: todo,
     "In progress": progress,
-    "Backlog": backlog,
-    "Done": done,
-    "Canceled": canceled,
+    Backlog: backlog,
+    Done: done,
+    Canceled: canceled,
   };
+
+
+  const getInitials = (word) => {
+    const words = word.split(" ");
+    if (words.length === 0) return "";
+    const firstInitial = words[0].charAt(0).toUpperCase();
+    const secondInitial =
+      words.length > 1 ? words[1].charAt(0).toUpperCase() : "";
+    return firstInitial + secondInitial;
+  };
+
 
 
   return (
     <div className="card">
       <div className="card-header">
         {ticket.id}
-        {grouping != "User" && <img src={cardimg} alt="" />}
+        {grouping != "User" && (
+          <div
+            className="initial"
+            style={{ backgroundColor: getRandomColor() }}
+          >
+            {getInitials(users.find((user) => user.id === ticket.userId).name)}
+          </div>
+        )}
       </div>
       <div className="card-title">
-        <img src={statusImages[ticket.status]} alt={`Priority ${ticket.status}`} />
+        <img
+          src={statusImages[ticket.status]}
+          alt={`Priority ${ticket.status}`}
+        />
 
         <p>{ticket.title}</p>
       </div>
       <div className="card-footer">
-      {grouping !== "Priority" && (
-          <img src={priorityImages[ticket.priority]} alt={`Priority ${ticket.priority}`} />
+        {grouping !== "Priority" && (
+          <img
+            src={priorityImages[ticket.priority]}
+            alt={`Priority ${ticket.priority}`}
+          />
         )}
         {/* {ticket.priority} */}
         <div className="tag">

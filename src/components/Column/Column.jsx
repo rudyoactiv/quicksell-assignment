@@ -15,7 +15,8 @@ import progress from "../../assets/icons/status/progress.svg";
 import done from "../../assets/icons/status/done.svg";
 import canceled from "../../assets/icons/status/canceled.svg";
 
-const Column = ({ grouping, title, tickets, ordering }) => {
+const Column = ({ grouping, title, tickets, ordering, users }) => {
+
   // Function to sort tickets based on the ordering criteria
   const sortTickets = (tickets, ordering) => {
     return [...tickets].sort((a, b) => {
@@ -113,7 +114,7 @@ const Column = ({ grouping, title, tickets, ordering }) => {
       <div className="ticket-list">
         {sortedTickets.length > 0 &&
           sortedTickets.map((ticket) => (
-            <Card key={ticket.id} ticket={ticket} grouping={grouping} /> // Use the Card component for each ticket
+            <Card key={ticket.id} ticket={ticket} grouping={grouping} users = {users}/> // Use the Card component for each ticket
           ))}
       </div>
     </div>
