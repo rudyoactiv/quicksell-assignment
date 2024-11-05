@@ -1,6 +1,6 @@
 import React from "react";
 import "./Column.css";
-import Card from "../Card/Card"; // Import the Card component
+import Card from "../Card/Card";
 
 import priority0 from "../../assets/icons/priority0.svg";
 import priority1 from "../../assets/icons/priority1.svg";
@@ -17,30 +17,28 @@ import canceled from "../../assets/icons/status/canceled.svg";
 const Column = ({ grouping, title, tickets, ordering, users }) => {
 
 
-  // Function to sort tickets based on the ordering criteria
+  // sorting function
   const sortTickets = (tickets, ordering) => {
     return [...tickets].sort((a, b) => {
       if (ordering === "Priority") {
-        return a.priority - b.priority; // Ascending order by priority
+        return a.priority - b.priority; // priority
       } else if (ordering === "Title") {
-        return a.title.localeCompare(b.title); // Alphabetical order by title
+        return a.title.localeCompare(b.title); // title
       }
     });
   };
 
-  const sortedTickets = sortTickets(tickets, ordering); // Sort the tickets based on the ordering prop
+  const sortedTickets = sortTickets(tickets, ordering);
 
+  // generating random colors for user profiles
   const colorList = [
-    "#FF5733", // Red Orange
-    "#33FF57", // Green
-    "#3357FF", // Blue
-    "#F1C40F", // Yellow
-    "#9B59B6", // Purple
-    "#2ECC71", // Emerald
-    "#E67E22", // Carrot
-    "#3498DB", // Peter River
-    "#1ABC9C", // Turquoise
-    "#34495E"  // Wet Asphalt
+    "#FF5733",
+    "#33FF57",
+    "#3357FF",
+    "#F1C40F",
+    "#2ECC71",
+    "#E67E22",
+    "#1ABC9C",
 ];
 
   const getRandomColor = () => {
@@ -48,6 +46,8 @@ const Column = ({ grouping, title, tickets, ordering, users }) => {
     return colorList[randomIndex];
 };
 
+
+// load priority images
   const priorityImages = {
     0: priority0,
     1: priority1,
@@ -56,6 +56,7 @@ const Column = ({ grouping, title, tickets, ordering, users }) => {
     4: priority4,
   };
 
+// load status images  
   const statusImages = {
     Todo: todo,
     "In progress": progress,
@@ -64,6 +65,7 @@ const Column = ({ grouping, title, tickets, ordering, users }) => {
     Canceled: canceled,
   };
 
+// map priority number to string  
   const altPriority = {
     4: "Urgent",
     3: "High",
@@ -79,38 +81,62 @@ const Column = ({ grouping, title, tickets, ordering, users }) => {
     const secondInitial =
       words.length > 1 ? words[1].charAt(0).toUpperCase() : "";
     return firstInitial + secondInitial;
-  };
+  };  // build user picture from name
 
   let isAvailable = false;
   if (grouping === "User") {
     const user = users.find((user) => user.name === title);
     isAvailable = user ? user.available : false; // Update value based on user availability
-  }
+  } // user availability dot
 
   return (
     <div className="column">
       <div className="column-title">
         <div className="title-left">
-          {grouping === "User" ? (
-            <div
-              className="initial"
-              style={{ backgroundColor: getRandomColor() }}
-            >
-              {getInitials(title)}
+
+
+
+          {/* show user image if grouping user */}
+
+          {
+            grouping === "User" ? (
               <div
-              className={`availability-indicator ${isAvailable ? 'available' : 'not-available'}`}
-            ></div>
-            </div>
-          ) : null}
+                className="initial"
+                style={{ backgroundColor: getRandomColor() }}
+              >
+                {getInitials(title)}
+                <div
+                  className={`availability-indicator ${
+                    isAvailable ? "available" : "not-available"
+                  }`}
+                ></div>
+              </div>
+            ) : null
+          }
+
+
+          {/* show status image if grouping status */}
 
           {grouping == "Status" && (
             <img src={statusImages[title]} alt={title} />
           )}
-          { grouping == "Priority" && (
+
+
+          {/* show priority image if grouping priority */}
+
+          {grouping == "Priority" && (
             <img src={priorityImages[title]} alt={title} />
           )}
 
-          {grouping === "Priority" ? <p>{altPriority[title]}</p> : <p>{title}</p>}
+
+
+          {/* show mapped values only if priority */}
+
+          {grouping === "Priority" ? (
+            <p>{altPriority[title]}</p>
+          ) : (
+            <p>{title}</p>
+          )}
 
           <span>{tickets.length}</span>
         </div>
@@ -119,11 +145,20 @@ const Column = ({ grouping, title, tickets, ordering, users }) => {
           <button>+</button>
           <button>⋯</button>
         </div>
+
+
       </div>
+
+
       <div className="ticket-list">
         {sortedTickets.length > 0 &&
           sortedTickets.map((ticket) => (
-            <Card key={ticket.id} ticket={ticket} grouping={grouping} users = {users}/> // Use the Card component for each ticket
+            <Card
+              key={ticket.id}
+              ticket={ticket}
+              grouping={grouping}
+              users={users}
+            /> // use Card component for each
           ))}
       </div>
     </div>

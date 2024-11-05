@@ -1,6 +1,5 @@
 import React from "react";
-import "./Card.css"; // Assuming you have a CSS file for styles
-import cardimg from "../../assets/react.svg";
+import "./Card.css";
 
 import priority0 from "../../assets/icons/priority0.svg";
 import priority1 from "../../assets/icons/priority1.svg";
@@ -18,18 +17,15 @@ const Card = ({ ticket, grouping, users }) => {
 
 
 
-
+  // generating random colors for user profiles
   const colorList = [
-    "#FF5733", // Red Orange
-    "#33FF57", // Green
-    "#3357FF", // Blue
-    "#F1C40F", // Yellow
-    "#9B59B6", // Purple
-    "#2ECC71", // Emerald
-    "#E67E22", // Carrot
-    "#3498DB", // Peter River
-    "#1ABC9C", // Turquoise
-    "#34495E"  // Wet Asphalt
+    "#FF5733",
+    "#33FF57",
+    "#3357FF",
+    "#F1C40F",
+    "#2ECC71",
+    "#E67E22",
+    "#1ABC9C",
 ];
 
   const getRandomColor = () => {
@@ -37,9 +33,7 @@ const Card = ({ ticket, grouping, users }) => {
     return colorList[randomIndex];
 };
 
-
-console.log(users);
-
+// load priority images
 
   const priorityImages = {
     0: priority0,
@@ -49,6 +43,8 @@ console.log(users);
     4: priority4,
   };
 
+// load status images
+
   const statusImages = {
     Todo: todo,
     "In progress": progress,
@@ -57,6 +53,8 @@ console.log(users);
     Canceled: canceled,
   };
 
+
+  // build user picture from name
 
   const getInitials = (word) => {
     const words = word.split(" ");
@@ -71,7 +69,15 @@ console.log(users);
   const isAvailable = user ? user.available : false;
 
   return (
+
+// card
+    // card-header
+    // card-title
+    // card-footer
+
+
     <div className="card">
+
       <div className="card-header">
         {ticket.id}
         {grouping !== "User" && (
@@ -79,13 +85,15 @@ console.log(users);
             className="initial"
             style={{ backgroundColor: getRandomColor() }}
           >
-            {getInitials(user ? user.name : "Unknown User")}
+            {getInitials(user.name)}
             <div
               className={`availability-indicator ${isAvailable ? 'available' : 'not-available'}`}
             ></div>
           </div>
         )}
       </div>
+
+
       <div className="card-title">
         <img
           src={statusImages[ticket.status]}
@@ -94,6 +102,7 @@ console.log(users);
 
         <p>{ticket.title}</p>
       </div>
+
       <div className="card-footer">
         {grouping !== "Priority" && (
           <img
@@ -101,12 +110,13 @@ console.log(users);
             alt={`Priority ${ticket.priority}`}
           />
         )}
-        {/* {ticket.priority} */}
+
         <div className="tag">
           <div className="circle"></div>
           {ticket.tag.join(", ")}
         </div>
       </div>
+
     </div>
   );
 };

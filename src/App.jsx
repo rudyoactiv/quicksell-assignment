@@ -5,11 +5,11 @@ import "./App.css";
 
 const App = () => {
   const [grouping, setGrouping] = useState(() => {
-    return localStorage.getItem("grouping") || "Status"; // Default grouping
+    return localStorage.getItem("grouping") || "Status";
   });
 
   const [ordering, setOrdering] = useState(() => {
-    return localStorage.getItem("ordering") || "Priority"; // Default ordering
+    return localStorage.getItem("ordering") || "Priority";
   });
 
     useEffect(() => {

@@ -17,7 +17,7 @@ const Home = ({ grouping, ordering }) => {
         );
         const data = await response.json();
 
-        // Store users and tickets in state
+        // setting data to state
         setUsers(data.users);
         setTickets(data.tickets);
       } catch (error) {

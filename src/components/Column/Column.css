@@ -37,30 +37,30 @@
     position: relative;
     margin-right: 5px;
     border-radius: 50%;
-    width: 20px; /* Set a fixed width */
-    height: 20px; /* Set a fixed height */
-    display: flex; /* Use flexbox for centering */
-    align-items: center; /* Vertically center the text */
-    justify-content: center; /* Horizontally center the text */
-    color: black; /* Optional: set the text color */
+    width: 20px; 
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
 }
 
 .availability-indicator {
     position: absolute;
-    bottom: -4px; /* Adjust based on your design */
-    right: -4px; /* Adjust based on your design */
-    width: 8px; /* Size of the circle */
-    height: 8px; /* Size of the circle */
+    bottom: -4px;
+    right: -4px;
+    width: 8px;
+    height: 8px;
     border: 2px solid white;
-    border-radius: 50%; /* Make it a circle */
+    border-radius: 50%;
   }
 
   .available {
-    background-color: green; /* Color for available */
+    background-color: green;
   }
   
   .not-available {
-    background-color: red; /* Color for not available */
+    background-color: red;
   }
 
 .title-left span {
