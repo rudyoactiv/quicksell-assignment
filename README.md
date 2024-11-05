@@ -20,7 +20,7 @@ Clone the repository, install dependencies, and start the development server.
 git clone https://github.com/rudyoactiv/quicksell-assignment.git
 cd quicksell-assignment 
 npm install
-npm start
+npm run dev
 ```
 
 ## Features
