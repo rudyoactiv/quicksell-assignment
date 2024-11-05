@@ -2,11 +2,11 @@ import React from "react";
 import "./Column.css";
 import Card from "../Card/Card";
 
-import priority0 from "../../assets/icons/priority0.svg";
-import priority1 from "../../assets/icons/priority1.svg";
-import priority2 from "../../assets/icons/priority2.svg";
-import priority3 from "../../assets/icons/priority3.svg";
-import priority4 from "../../assets/icons/priority4.svg";
+import priority0 from "../../assets/icons/priority/priority0.svg";
+import priority1 from "../../assets/icons/priority/priority1.svg";
+import priority2 from "../../assets/icons/priority/priority2.svg";
+import priority3 from "../../assets/icons/priority/priority3.svg";
+import priority4 from "../../assets/icons/priority/priority4.svg";
 
 import backlog from "../../assets/icons/status/backlog.svg";
 import todo from "../../assets/icons/status/todo.svg";
