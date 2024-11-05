@@ -1,6 +1,8 @@
 # Ticket Management Dashboard
 
 ![Ticket Management Dashboard](kanban.png)
+<center>Homepage Screeshot</center>
+
 
 This is a React-based project for a ticket management dashboard that allows users to view and organize tickets based on grouping and ordering criteria. The app fetches ticket and user data from an external API and displays it in a customizable interface with options to group and sort tickets by status, user, or priority.
 
