@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import dropimg from "../../assets/icons/menu.svg";
 import down from "../../assets/icons/down.svg";
+import github from "../../assets/icons/github.svg";
 
 const Navbar = ({ grouping, ordering, setGrouping, setOrdering }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -42,6 +43,10 @@ const Navbar = ({ grouping, ordering, setGrouping, setOrdering }) => {
           </select>
         </div>
       </div>
+      <a className="drop-btn" href="https://github.com/rudyoactiv/quicksell-assignment">
+        <img src={github} alt="" />
+        View Code
+      </a>
     </nav>
   );
 };
